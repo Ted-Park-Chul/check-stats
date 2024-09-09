@@ -122,8 +122,8 @@ if selected_subcategory:
         
         
         
-        current_sku = df_sku[df_sku['카테고리소분류'] == selected_subcategory]['2024년08월']
-        prev_sku = df_sku[df_sku['카테고리소분류'] == selected_subcategory]['2024년07월']
+        current_sku = df_sku[df_sku['카테고리소분류'] == selected_subcategory]['2024년09월']
+        prev_sku = df_sku[df_sku['카테고리소분류'] == selected_subcategory]['2024년08월']
         
         if not current_sku.empty and not prev_sku.empty:
             current_sku = current_sku.values[0]
@@ -134,8 +134,8 @@ if selected_subcategory:
             current_sku, prev_sku, sku_change = 0, 0, 0
 
         # 진행 SKU 순위 계산
-        df_sku['순위'] = df_sku['2024년08월'].rank(method='min', ascending=False)
-        df_sku['전월 순위'] = df_sku['2024년07월'].rank(method='min', ascending=False)
+        df_sku['순위'] = df_sku['2024년09월'].rank(method='min', ascending=False)
+        df_sku['전월 순위'] = df_sku['2024년08월'].rank(method='min', ascending=False)
         
         if not df_sku[df_sku['카테고리소분류'] == selected_subcategory].empty:
             current_rank = df_sku[df_sku['카테고리소분류'] == selected_subcategory]['순위'].values[0]
@@ -149,8 +149,10 @@ if selected_subcategory:
 
         # 항목 3: 현재 단종 SKU
         
-        current_discontinued_sku = df_discontinued_sku[df_discontinued_sku['카테고리소분류'] == selected_subcategory]['2024년08월']
-        prev_discontinued_sku = df_discontinued_sku[df_discontinued_sku['카테고리소분류'] == selected_subcategory]['2024년07월']
+        
+
+        current_discontinued_sku = df_discontinued_sku[df_discontinued_sku['카테고리소분류'] == selected_subcategory]['2024년09월']
+        prev_discontinued_sku = df_discontinued_sku[df_discontinued_sku['카테고리소분류'] == selected_subcategory]['2024년08월']
         
         if not current_discontinued_sku.empty and not prev_discontinued_sku.empty:
             current_discontinued_sku = current_discontinued_sku.values[0]
@@ -161,8 +163,8 @@ if selected_subcategory:
             current_discontinued_sku, prev_discontinued_sku, discontinued_sku_change = 0, 0, 0
 
         # 항목 4: 단종 SKU 순위
-        df_discontinued_sku['순위'] = df_discontinued_sku['2024년08월'].rank(method='min', ascending=False)
-        df_discontinued_sku['전월 순위'] = df_discontinued_sku['2024년07월'].rank(method='min', ascending=False)
+        df_discontinued_sku['순위'] = df_discontinued_sku['2024년09월'].rank(method='min', ascending=False)
+        df_discontinued_sku['전월 순위'] = df_discontinued_sku['2024년08월'].rank(method='min', ascending=False)
         
         if not df_discontinued_sku[df_discontinued_sku['카테고리소분류'] == selected_subcategory].empty:
             discontinued_rank = df_discontinued_sku[df_discontinued_sku['카테고리소분류'] == selected_subcategory]['순위'].values[0]
@@ -179,12 +181,12 @@ if selected_subcategory:
         # 항목 1: 현재와 전월의 진행 SKU (매번교체)
         
         
-        df_inventory['순위'] = df_inventory['2024년08월'].rank(method='min', ascending=False)
-        df_inventory['전월 순위'] = df_inventory['2024년07월'].rank(method='min', ascending=False)
+        df_inventory['순위'] = df_inventory['2024년09월'].rank(method='min', ascending=False)
+        df_inventory['전월 순위'] = df_inventory['2024년08월'].rank(method='min', ascending=False)
         
         if not df_inventory[df_inventory['카테고리소분류'] == selected_subcategory].empty:
-            current_progress_inventory = df_inventory[df_inventory['카테고리소분류'] == selected_subcategory]['2024년08월'].values[0] / 1e8
-            prev_progress_inventory = df_inventory[df_inventory['카테고리소분류'] == selected_subcategory]['2024년07월'].values[0] / 1e8
+            current_progress_inventory = df_inventory[df_inventory['카테고리소분류'] == selected_subcategory]['2024년09월'].values[0] / 1e8
+            prev_progress_inventory = df_inventory[df_inventory['카테고리소분류'] == selected_subcategory]['2024년08월'].values[0] / 1e8
             progress_inventory_change = current_progress_inventory - prev_progress_inventory
 
             progress_rank = df_inventory[df_inventory['카테고리소분류'] == selected_subcategory]['순위'].values[0]
@@ -195,12 +197,12 @@ if selected_subcategory:
             current_progress_inventory, prev_progress_inventory, progress_inventory_change, progress_rank, progress_rank_change = 0, 0, 0, 0, 0
 
         # 항목 6: 단종 재고액
-        df_discontinued_inventory['순위'] = df_discontinued_inventory['2024년08월'].rank(method='min', ascending=False)
-        df_discontinued_inventory['전월 순위'] = df_discontinued_inventory['2024년07월'].rank(method='min', ascending=False)
+        df_discontinued_inventory['순위'] = df_discontinued_inventory['2024년09월'].rank(method='min', ascending=False)
+        df_discontinued_inventory['전월 순위'] = df_discontinued_inventory['2024년08월'].rank(method='min', ascending=False)
         
         if not df_discontinued_inventory[df_discontinued_inventory['카테고리소분류'] == selected_subcategory].empty:
-            current_discontinued_inventory = df_discontinued_inventory[df_discontinued_inventory['카테고리소분류'] == selected_subcategory]['2024년08월'].values[0] / 1e8
-            prev_discontinued_inventory = df_discontinued_inventory[df_discontinued_inventory['카테고리소분류'] == selected_subcategory]['2024년07월'].values[0] / 1e8
+            current_discontinued_inventory = df_discontinued_inventory[df_discontinued_inventory['카테고리소분류'] == selected_subcategory]['2024년09월'].values[0] / 1e8
+            prev_discontinued_inventory = df_discontinued_inventory[df_discontinued_inventory['카테고리소분류'] == selected_subcategory]['2024년08월'].values[0] / 1e8
             discontinued_inventory_change = current_discontinued_inventory - prev_discontinued_inventory
 
             discontinued_rank = df_discontinued_inventory[df_discontinued_inventory['카테고리소분류'] == selected_subcategory]['순위'].values[0]
@@ -242,7 +244,7 @@ if selected_subcategory:
         st.markdown("</div>", unsafe_allow_html=True)
 
         # 항목 5 및 항목 6: 소분류별 매출
-        df_sales['2024년 월평균 매출'] = df_sales[[f'2024년{str(i).zfill(2)}월' for i in range(1, 9)]].mean(axis=1) / 1e8
+        df_sales['2024년 월평균 매출'] = df_sales[[f'2024년{str(i).zfill(2)}월' for i in range(1, 10)]].mean(axis=1) / 1e8
         df_sales_ranked = df_sales.sort_values(by='2024년 월평균 매출', ascending=False).reset_index(drop=True)
         rank = df_sales_ranked[df_sales_ranked['카테고리소분류'] == selected_subcategory].index[0] + 1
         total_sales_count = len(df_sales_ranked)
@@ -255,7 +257,7 @@ if selected_subcategory:
         df_sales_filtered = df_sales[df_sales['카테고리소분류'] == selected_subcategory]
 
         if not df_sales_filtered.empty:
-            sales_2024 = df_sales_filtered[[f'2024년{str(i).zfill(2)}월' for i in range(1, 9)]].mean(axis=1).values[0] / 1e8
+            sales_2024 = df_sales_filtered[[f'2024년{str(i).zfill(2)}월' for i in range(1, 10)]].mean(axis=1).values[0] / 1e8
             sales_2023 = df_sales_filtered[[f'2023년{str(i).zfill(2)}월' for i in range(1, 13)]].mean(axis=1).values[0] / 1e8
             sales_change = sales_2024 - sales_2023
 
@@ -279,7 +281,7 @@ if selected_subcategory:
             with col17:
                 st.metric(label="매출 순위", value=f"{rank}위 / {total_sales_count}위")
                 
-        sales_columns = [f'2023년{str(i).zfill(2)}월' for i in range(1, 13)] + [f'2024년{str(i).zfill(2)}월' for i in range(1, 9)]
+        sales_columns = [f'2023년{str(i).zfill(2)}월' for i in range(1, 13)] + [f'2024년{str(i).zfill(2)}월' for i in range(1, 10)]
         df_sales_filtered = df_sales_filtered[['카테고리소분류'] + sales_columns]
 
         # melt를 사용하여 데이터 변형
@@ -363,7 +365,7 @@ if selected_subcategory:
             labels = ['1천개 미만', '1천개~3천개', '3천개~5천개', '5천개~1만개', '1만개 이상']
             
             # 2024년 1월 ~ 2024년 7월 월평균 판매 수량 계산
-            months = ['2024년01월', '2024년02월', '2024년03월', '2024년04월', '2024년05월', '2024년06월', '2024년07월']
+            months = ['2024년01월', '2024년02월', '2024년03월', '2024년04월', '2024년05월', '2024년06월', '2024년07월', '2024년08월', '2024년09월']
             available_months = [month for month in months if month in df_sales_range_filtered.columns]
             
             def calculate_mean(row):
